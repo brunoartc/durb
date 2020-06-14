@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         im = GetComponent<InputManager>();
-        rb.centerOfMass = CM.position;
+        //rb.centerOfMass = CM.position;
     }
 
     void FixedUpdate()
