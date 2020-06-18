@@ -119,12 +119,14 @@ GameObject:
   - component: {fileID: 7432039877966121639}
   - component: {fileID: 7432039877811661267}
   - component: {fileID: 7432039877811661264}
-  - component: {fileID: 7432039877811661269}
-  - component: {fileID: 7432039877811661268}
   - component: {fileID: 7432039877811661270}
+  - component: {fileID: 1021147781}
+  - component: {fileID: 1021147782}
+  - component: {fileID: 1021147783}
+  - component: {fileID: 1021147784}
   m_Layer: 0
   m_Name: Car_1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -178,48 +180,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.8933182, y: 1.3090212, z: 4.70765}
   m_Center: {x: -0.036685944, y: 0.7425817, z: -0.04324293}
---- !u!114 &7432039877811661269
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7432039877965960839}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61e5656494a33ed45bfd5f175ca08608, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  im: {fileID: 7432039877811661268}
-  throttleWheels:
-  - {fileID: 7432039876627360125}
-  - {fileID: 7432039876651539230}
-  - {fileID: 7432039877450892308}
-  - {fileID: 7432039877704051068}
-  steeringWheels:
-  - {fileID: 7432039877965960835}
-  - {fileID: 7432039877965960845}
-  meshes: []
-  strenghtCoefficient: 20000
-  brakeCoefficient: 2
-  maxTurn: 20
-  CM: {fileID: 0}
-  rb: {fileID: 0}
---- !u!114 &7432039877811661268
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7432039877965960839}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 920c9785a1c130a4eaedbba77e98b690, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  throttle: 0
-  steer: 0
-  brake: 0
 --- !u!114 &7432039877811661270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,6 +195,89 @@ MonoBehaviour:
   WheelL: {fileID: 7432039877704051068}
   WheelR: {fileID: 7432039877450892308}
   AntiRoll: 5000
+--- !u!114 &1021147781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7432039877965960839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+--- !u!114 &1021147782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7432039877965960839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 1021147781}
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &1021147783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7432039877965960839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a274fc90556a26748b5a99d811ecc7e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  throttle: 0
+  steer: 0
+  brake: 0
+--- !u!114 &1021147784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7432039877965960839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9b1e468a728bef4599506a9f3d64232, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  im: {fileID: 1021147783}
+  throttleWheels:
+  - {fileID: 7432039876627360125}
+  - {fileID: 7432039876651539230}
+  - {fileID: 7432039877450892308}
+  - {fileID: 7432039877704051068}
+  steeringWheels:
+  - {fileID: 7432039877965960835}
+  - {fileID: 7432039877965960845}
+  meshes:
+  - {fileID: 7432039877965960847}
+  - {fileID: 7432039877965960841}
+  - {fileID: 7432039877965960845}
+  - {fileID: 7432039877965960835}
+  strenghtCoefficient: 20000
+  brakeCoefficient: 2
+  maxTurn: 20
+  CM: {fileID: 0}
+  rb: {fileID: 7432039877811661267}
 --- !u!1 &7432039877965960841
 GameObject:
   m_ObjectHideFlags: 0
