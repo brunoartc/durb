@@ -29,14 +29,18 @@ public class PlayerControllerMP : MonoBehaviour, IPunObservable
     {
         if (stream.IsWriting)
         {
-            stream.SendNext(localPlayerPosition);
+            stream.SendNext(localPlayerPosition.Item1);
+            stream.SendNext(localPlayerPosition.Item2);
+            //Debug.Log($"sending x={localPlayerPosition.Item1} y={localPlayerPosition.Item2}");
         }
         else
         {
-            Tuple<float, float> remotePlayerPosition = (Tuple<float, float>)stream.ReceiveNext();
-            Debug.Log(GetComponent<PhotonView>().ViewID);
+            float x = (float)stream.ReceiveNext();
+            float y = (float)stream.ReceiveNext();
+            //Debug.Log($"{GetComponent<PhotonView>().ViewID} sent x={x} y={y}");
+            Tuple<float, float> remotePlayerPosition  = new Tuple<float, float>(x, y);
             terrainScript.updateDictionary(GetComponent<PhotonView>().ViewID.ToString(), remotePlayerPosition);
-}
+        }
     }
 
     void Start()

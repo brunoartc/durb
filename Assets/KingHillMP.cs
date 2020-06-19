@@ -11,11 +11,8 @@ public class KingHillMP : MonoBehaviour
     void Start()
     {
         int numberOfPlayers = Int16.Parse(PhotonNetwork.NickName) % 10; //FIX THIS
-        if (numberOfPlayers == 1)
-        {
-            GameObject eu = PhotonNetwork.Instantiate(carObj.name, new Vector3(0, 0, numberOfPlayers * 50), Quaternion.identity);
-            Camera.main.GetComponent<CameraManager>().focus = eu;
-        }
+        GameObject eu = PhotonNetwork.Instantiate(carObj.name, new Vector3(0, 0, numberOfPlayers * 50), Quaternion.identity);
+        Camera.main.GetComponent<CameraManager>().focus = eu;
     }
 
     // Update is called once per frame

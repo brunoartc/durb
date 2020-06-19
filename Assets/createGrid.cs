@@ -29,7 +29,14 @@ public class createGrid : MonoBehaviour
 
     public void updateDictionary(string id, Tuple<float, float> position)
     {
-        playersPositions.Add(id, position);
+        if (!playersPositions.ContainsKey(id))
+        {
+            playersPositions.Add(id, position);
+        } else
+        {
+            playersPositions[id] = position;
+        }
+        
     }
 
     void Start()
@@ -56,13 +63,13 @@ public class createGrid : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(playersPositions);
-        /*foreach (KeyValuePair<string, Tuple<float, float>> player in playersPositions)
+        //Debug.Log(playersPositions);
+        foreach (KeyValuePair<string, Tuple<float, float>> player in playersPositions)
         {
 
             int x = (int) ((-minXGrid + player.Value.Item1) / chunkXArea);
             int z = (int) ((-minZGrid + player.Value.Item2) / chunkZArea);
-            Debug.Log("player <" + player.Key + "> captured [" + x + "," + z + "];");
+            //Debug.Log("player <" + player.Key + "> captured [" + x + "," + z + "];");
             if (!playersPoints.ContainsKey(player.Key))
             {
                 playersPoints.Add(player.Key, 0);
@@ -91,7 +98,7 @@ public class createGrid : MonoBehaviour
 
 
 
-        }*/
+        }
         
     }
 }
