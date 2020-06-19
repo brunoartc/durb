@@ -34,6 +34,7 @@ public class createGrid : MonoBehaviour
 
     void Start()
     {
+        playersPositions = new Dictionary<string, Tuple<float, float>>();
         owners = new string[(int) (gridXSize/ chunkXArea), (int) (gridZSize/ chunkZArea)];
         int totalPoints = 0;
         for (int i = 0; i < (int)(gridXSize / chunkXArea); i++)
@@ -55,7 +56,8 @@ public class createGrid : MonoBehaviour
 
     void Update()
     {
-        foreach (KeyValuePair<string, Tuple<float, float>> player in playersPositions)
+        Debug.Log(playersPositions);
+        /*foreach (KeyValuePair<string, Tuple<float, float>> player in playersPositions)
         {
 
             int x = (int) ((-minXGrid + player.Value.Item1) / chunkXArea);
@@ -89,7 +91,7 @@ public class createGrid : MonoBehaviour
 
 
 
-        }
+        }*/
         
     }
 }
