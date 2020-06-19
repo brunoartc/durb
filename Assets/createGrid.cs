@@ -1,12 +1,16 @@
-﻿using System.Collections;
+﻿using Photon.Pun;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class createGrid : MonoBehaviour
 {
     public GameObject points;
-
+    
+    
 
     float minXGrid = -250.0f;
     float minZGrid = -250.0f;
@@ -17,10 +21,16 @@ public class createGrid : MonoBehaviour
     float chunkXArea = 50.0f;
     float chunkZArea = 50.0f;
 
-    public List<GameObject> players;
-    public Dictionary<string, int> playersPoints;
-    string[,] owners;
+    [SerializeField] public List<GameObject> players;
+    [SerializeField] public Dictionary<string, int> playersPoints;
+    [SerializeField] string[,] owners;
+    [SerializeField] public Dictionary<string, Tuple<float, float>> playersPositions;
 
+
+    public void updateDictionary(string id, Tuple<float, float> position)
+    {
+        playersPositions.Add(id, position);
+    }
 
     void Start()
     {
@@ -45,23 +55,27 @@ public class createGrid : MonoBehaviour
 
     void Update()
     {
-        foreach (GameObject player in players)
+        foreach (KeyValuePair<string, Tuple<float, float>> player in playersPositions)
         {
 
-            int x = (int) ((-minXGrid + player.transform.position.x) / chunkXArea);
-            int z = (int) ((-minZGrid + player.transform.position.z) / chunkZArea);
-            Debug.Log("player <" + player.tag + "> captured [" + x + "," + z + "];");
-            if (player.tag != owners[x, z])
+            int x = (int) ((-minXGrid + player.Value.Item1) / chunkXArea);
+            int z = (int) ((-minZGrid + player.Value.Item2) / chunkZArea);
+            Debug.Log("player <" + player.Key + "> captured [" + x + "," + z + "];");
+            if (!playersPoints.ContainsKey(player.Key))
+            {
+                playersPoints.Add(player.Key, 0);
+            }
+            if (player.Key != owners[x, z])
             {
                 string oldplayer = owners[x, z];
-                owners[x, z] = player.tag;
+                owners[x, z] = player.Key;
 
-                playersPoints[player.tag] += 1;
+                playersPoints[player.Key] += 1;
                 playersPoints[oldplayer] -= 1;
 
 
-                points.GetComponent<Text>().text = string.Format("Points: {0}", playersPoints[player.tag]);
-                Debug.Log("player <" + player.tag + "> captured [" + x + "," + z + "];");
+                points.GetComponent<Text>().text = string.Format("Points: {0}", playersPoints[player.Key]);
+                Debug.Log("player <" + player.Key + "> captured [" + x + "," + z + "];");
             }
 
 

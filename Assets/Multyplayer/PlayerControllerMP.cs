@@ -1,11 +1,17 @@
-﻿using System.Collections;
+﻿using Photon.Pun;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 
 [RequireComponent(typeof(InputManagerMP))]
-public class PlayerControllerMP : MonoBehaviour
+public class PlayerControllerMP : MonoBehaviour, IPunObservable
+
 {
+
+
+    public createGrid terrainScript;
     public InputManagerMP im;
     public List<WheelCollider> throttleWheels;
     public List<GameObject> steeringWheels;
@@ -16,9 +22,27 @@ public class PlayerControllerMP : MonoBehaviour
     public Transform CM;
     public Rigidbody rb;
 
+
+    public Tuple<float, float> localPlayerPosition;
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo msg)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(localPlayerPosition);
+        }
+        else
+        {
+            Tuple<float, float> remotePlayerPosition = (Tuple<float, float>)stream.ReceiveNext();
+            Debug.Log(GetComponent<PhotonView>().ViewID);
+            terrainScript.updateDictionary(GetComponent<PhotonView>().ViewID.ToString(), remotePlayerPosition);
+}
+    }
+
     void Start()
     {
         im = GetComponent<InputManagerMP>();
+        terrainScript = GameObject.FindGameObjectWithTag("Terrain").GetComponent<createGrid>();
         //rb.centerOfMass = CM.position;
     }
 
@@ -39,6 +63,7 @@ public class PlayerControllerMP : MonoBehaviour
             }
         }
 
+
         foreach (GameObject wheel in steeringWheels)
         {
             wheel.GetComponent<WheelCollider>().steerAngle = maxTurn * im.steer;
@@ -49,6 +74,10 @@ public class PlayerControllerMP : MonoBehaviour
         {
             mesh.transform.Rotate(rb.velocity.magnitude * (transform.InverseTransformDirection(rb.velocity).z >= 0 ? 1 : -1) / (2 * Mathf.PI * 0.33f), 0f, 0f);
         }
+
+
+        localPlayerPosition =  new Tuple<float, float>(transform.position.x, transform.position.y);
+
     }
 
 
