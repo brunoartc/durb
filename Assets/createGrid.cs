@@ -21,10 +21,10 @@ public class createGrid : MonoBehaviour
     float chunkXArea = 50.0f;
     float chunkZArea = 50.0f;
 
-    [SerializeField] public List<GameObject> players;
-    [SerializeField] public Dictionary<string, int> playersPoints;
-    [SerializeField] string[,] owners;
-    [SerializeField] public Dictionary<string, Tuple<float, float>> playersPositions;
+    public List<GameObject> players;
+    public Dictionary<string, int> playersPoints;
+    string[,] owners;
+    public Dictionary<string, Tuple<float, float>> playersPositions;
 
 
     public void updateDictionary(string id, Tuple<float, float> position)

@@ -475,6 +475,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9b1e468a728bef4599506a9f3d64232, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  terrainScript: {fileID: 0}
   im: {fileID: 3502388236813653481}
   throttleWheels:
   - {fileID: 6321104922120865299}
