@@ -17,7 +17,7 @@ public class loadWorld : MonoBehaviour
         
     }
 
-    void loadMainWorld()
+    public void loadMainWorld()
     {
         SceneManager.LoadScene("SampleScene");
     }
