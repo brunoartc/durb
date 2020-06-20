@@ -31,7 +31,10 @@ public class PlayerControllerMP : MonoBehaviour, IPunObservable
         {
             stream.SendNext(localPlayerPosition.Item1);
             stream.SendNext(localPlayerPosition.Item2);
+            Tuple<float, float> lloPlayerPosition = new Tuple<float, float>(localPlayerPosition.Item1, localPlayerPosition.Item2);
             //Debug.Log($"sending x={localPlayerPosition.Item1} y={localPlayerPosition.Item2}");
+            terrainScript.updateDictionary(GetComponent<PhotonView>().ViewID.ToString(), lloPlayerPosition);
+
         }
         else
         {

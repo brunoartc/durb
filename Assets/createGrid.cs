@@ -69,7 +69,7 @@ public class createGrid : MonoBehaviour
     {
         //Debug.Log(playersPositions);
 
-        if (Time.timeSinceLevelLoad > 600.0f)
+        if (Time.timeSinceLevelLoad > 180.0f)
         {
             if (flagMatch)
             {
@@ -82,7 +82,7 @@ public class createGrid : MonoBehaviour
                 flagMatch = !flagMatch;
             } else
             {
-                if (Time.timeSinceLevelLoad > 660.0f)
+                if (Time.timeSinceLevelLoad > 200.0f)
                 {
                     SceneManager.LoadScene("SampleScene");
                 }
