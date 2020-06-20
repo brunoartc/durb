@@ -13,6 +13,8 @@ public class createGrid : MonoBehaviour
 
     public TMPro.TextMeshProUGUI winingText;
 
+    public List<GameObject> Cubos;
+
     private float startTime = 0.0f;
 
     float minXGrid = -250.0f;
@@ -29,6 +31,18 @@ public class createGrid : MonoBehaviour
     public Dictionary<string, int> playersPoints;
     string[,] owners;
     public Dictionary<string, Tuple<float, float>> playersPositions;
+
+    private int posToCube(int x, int z)
+    {
+        int cubo = z * 10 + x;
+        return cubo;
+    }
+
+    private int idToColor(int id)
+    {
+        int color = (id % 1000) * (id % 1000) * (id % 1000);
+        return color;
+    }
 
 
     public void updateDictionary(string id, Tuple<float, float> position)
@@ -107,6 +121,13 @@ public class createGrid : MonoBehaviour
 
                     playersPoints[player.Key] += 1;
                     playersPoints[oldplayer] -= 1;
+
+                    //int color = idToColor(Int16.Parse(player.key));
+
+                    int cube =  posToCube(x, z);
+
+                    //Cubos[cube].renderer.material.color = new Color(color,1,1);
+                    
 
 
                     points.GetComponent<Text>().text = string.Format("Points: {0}", playersPoints[player.Key]);
